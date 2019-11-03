@@ -50,6 +50,7 @@ function getCofactorFrom(matrixO, row, column) {
   return matrix;
 }
 
+
 /* Calling function that outlines general
     logic of calculating determinant */
 function det(matrix) {
@@ -124,6 +125,7 @@ function add(matrix1O, matrix2O) {
   return sumMatrix
 }
 
+
 function subtract(matrix1O, matrix2O) {
   let matrix2 = multiplyByConstant(-1, matrix2O);
   return add(matrix1O, matrix2);
@@ -183,6 +185,7 @@ function transpose(matrixO) {
 }
 
 
+
 function cofactorMatrix(matrixO) {
   let matrix = copy(matrixO);
   let cofactors = [];
@@ -212,6 +215,7 @@ function adjugate(matrixO) {
   let cofactors = cofactorMatrix(matrixO);
   return transpose(cofactors);
 }
+
 
 
 function inverse(matrixO) {
@@ -265,6 +269,21 @@ function symmteric(matrixO) {
 }
 
 
+//Input must be RREF
+function rank(matrix) {
+    let rank = 0;
+
+    for (let i = 0; i < matrix.length; i++) {
+      for (let j = 0; j < matrix[i].length; j++) {
+        if (matrix[i][j] == 0) { continue; }
+        rank += 1;
+        break;
+      }
+    }
+
+    return rank;
+}
+
 //Gaussian Elimantion
 function rref(matrixO) {
   let matrix = copy(matrixO);
@@ -278,10 +297,43 @@ function rref(matrixO) {
 */
 }
 
+
 //Power to N
+function matrixPow(matrixO, k) {
+  let transformed = matrixO
+  for (let i = 0; i < k; i++) {
+    transformed = multiply(transformed, matrixO);
+  }
+
+  return transformed;
+}
+
 
 //Eigenvalue and Eigen Vector
+class DiagonalizeSet {
+  // P matrix
+  // D matrix
+  constructor(eigenValues, eigenVectors) {
 
+  }
+}
+function diagonize(matrixO) {
+  //Find det(λI - A); A- nxn matrix
+  let characteristic = subtract(
+    Identity(matrixO.length),
+    matrixO
+  );
+
+  //Modify determinants to return 2 arrays:
+    // 1 powers, 1 coefficent
+  let polydata = lambdaDet(characteristic);
+
+  //Form Polynomial w/ λ to n-th order
+
+  //Solve for roots of polynomial to get eigen values
+    //Newton's Method:
+
+}
 
 
 /*
@@ -320,9 +372,6 @@ let F = [
   [0, 0, 0]
 ];
 console.log(inverse(F));
-
-
-
 
 
 //Utility
