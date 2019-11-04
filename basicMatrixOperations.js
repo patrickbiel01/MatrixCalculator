@@ -285,16 +285,58 @@ function rank(matrix) {
 }
 
 //Gaussian Elimantion
+// Look at nth column (except last column)
+  // if A[n][n] == 0: swap with last row with non-zero entry
+    // if no non-zero entries move to (n+1)th column
+  // reduce A[n][n] to 1 (and all entries for corresponding row)
+  // Make all other column entries 0 through elementary operations
 function rref(matrixO) {
   let matrix = copy(matrixO);
-/*
-  for (let i = 0; i < matrix[0].length; i++) {
-    for (let row = i; row < matrix.length; row++) {
-      let a = matrix[row][i];
-      if (a == 0) { continue; }
+
+  for (let i = 0; i < matrix[0].length-1; i++) {
+    let columnV = getColumnVectorFrom(matrix, i);
+    if (matrix[i][i] == 0) {
+      //Find row with last leading one
+      let lastLeadingOne = -1;
+      for (let j = columnV.length-1; j >= 0; j--) {
+        if (columnV[i] != 0) {
+          lastLeadingOne = i
+          break
+        }
+      }
+      //If column is all zeros
+      if (lastLeadingOne == -1) { continue; }
+      //Otherwise, swap current row with last leading non-zero
+      matrix = swapRows(i, lastleadingOne, matrix);
+      columnV = getColumnVectorFrom(matrix, i);
     }
-  }
-*/
+
+    //Reduce leading non-zero's row to 1
+    let a = matrix[i][i];
+    let row = matrix[i];
+    row = multiplyRowByConstant(matrix, i, 1/a);
+    columnV[i] = row[i];
+
+    //Reduce all other rows to zero
+    for (var c = 0; c < columnV.length; c++) {
+      if (c == i) { continue; }
+      let b = columnV[c];
+      //* Something like this *
+      matrix = addRows(matrix[c], 1, matrix[i], -1*b);
+    }
+
+    }
+}
+
+/* Elementary Row Operations */
+function multiplyRowByConstant(matrix, row, c) {
+
+}
+function swapRows(r1, r2, matrix) {
+
+}
+function addRows(r1, k1, r2, k2, matrix) {
+
 }
 
 
