@@ -284,7 +284,7 @@ function rank(matrix) {
     return rank;
 }
 
-//Gaussian Elimantion
+//Gaussian Elimantion:
 // Look at nth column (except last column)
   // if A[n][n] == 0: swap with last row with non-zero entry
     // if no non-zero entries move to (n+1)th column
@@ -299,9 +299,9 @@ function rref(matrixO) {
       //Find row with last leading one
       let lastLeadingOne = -1;
       for (let j = columnV.length-1; j >= 0; j--) {
-        if (columnV[i] != 0) {
-          lastLeadingOne = i
-          break
+        if (columnV[j] != 0) {
+          lastLeadingOne = j;
+          break;
         }
       }
       //If column is all zeros
@@ -313,31 +313,52 @@ function rref(matrixO) {
 
     //Reduce leading non-zero's row to 1
     let a = matrix[i][i];
-    let row = matrix[i];
-    row = multiplyRowByConstant(matrix, i, 1/a);
-    columnV[i] = row[i];
+    matrix = multiplyRowByConstant(i, 1/a, matrix);
+    columnV[i] = 1;
 
     //Reduce all other rows to zero
     for (var c = 0; c < columnV.length; c++) {
       if (c == i) { continue; }
       let b = columnV[c];
-      //* Something like this *
-      matrix = addRows(matrix[c], 1, matrix[i], -1*b);
+      matrix = addRows(c, 1, i, -1*b, matrix);
     }
 
     }
+
+    return matrix;
 }
 
 /* Elementary Row Operations */
-function multiplyRowByConstant(matrix, row, c) {
+function multiplyRowByConstant(rowN, c, matrixO) {
+  let matrix = copy(matrixO);
+  let row = matrix[rowN];
 
-}
-function swapRows(r1, r2, matrix) {
+  for (let col = 0; col < row.length; col++) {
+    matrix[rowN][col] *= c;
+  }
 
+  return matrix;
 }
-function addRows(r1, k1, r2, k2, matrix) {
+function swapRows(r1, r2, matrixO) {
+  let matrix = copy(matrixO);
 
+  let tmp = matrix[r1];
+  matrix[r1] = matrix[r2]
+  matrix[r2] = tmp
+
+  return matrix;
 }
+function addRows(r1, k1, r2, k2, matrixO) {
+  let matrix = copy(matrixO);
+
+  for (let col = 0; col < matrix[r1].length; col++) {
+     matrix[r1][col] *= k1;
+     matrix[r1][col] += k2*matrix[r2][col];
+  }
+
+  return matrix;
+}
+/* ---- End of Elementary Operations ----- */
 
 
 //Power to N
@@ -400,20 +421,14 @@ let D = [
 ];
 console.log("\n");
 console.log(det(D));
+console.log(rref(D));
 
 let E = [
-  [3, 0, 2],
-  [2, 0 , -2],
-  [0, 1, 1]
+  [1, 1, -1, 9],
+  [0, 1, 3, 3],
+  [-1, 0, -2, 2]
 ];
-console.log(inverse(E));
-
-let F = [
-  [0, 11, 4],
-  [0, 0, 77],
-  [0, 0, 0]
-];
-console.log(inverse(F));
+console.log(rref(E));
 
 
 //Utility
