@@ -27,7 +27,7 @@ function onGenerateClick() {
     let tRow = document.createElement("tr");
     for (let j = 0; j < column; j++) {
       let td = document.createElement('td');
-      td.innerHTML = '<input type="text" class="form-control" />';
+      td.innerHTML = '<input type="text" class="formControl" />';
       tRow.appendChild(td);
     }
     tb.appendChild(tRow);

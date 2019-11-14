@@ -364,8 +364,15 @@ function addRows(r1, k1, r2, k2, matrixO) {
 //Power to N
 function matrixPow(matrixO, k) {
   let transformed = matrixO
-  for (let i = 0; i < k; i++) {
-    transformed = multiply(transformed, matrixO);
+  if (k < 0) {
+    let inverse = inverse(transformed);
+    transformed = matrixPow(inverse, -1*k);
+  }else if (k == 0) {
+    return Identity(matrixO.size);
+  }else if (k > 0) {
+    for (let i = 0; i < k; i++) {
+      transformed = multiply(transformed, matrixO);
+    }
   }
 
   return transformed;
