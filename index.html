@@ -74,6 +74,7 @@
 		<link rel="stylesheet" href="css/screen-support.css">
 		<!-- Scripts -->
 		<script type="text/javascript" src="basicMatrixOperations.js"> </script>
+		<script type="text/javascript" src="createMatrixInput.js" > </script>
 	</head>
 
 	<body>
@@ -92,29 +93,16 @@
 			<input placeholder="Enter # of rows" name="rowDim" id="rowDim" type="text">
 			<input placeholder="Enter # of columns" name="columnsDim" id="columnsDim" type="text">
 			<br>
-			<button type="button" name="submit"> Create new Matrix </button>
+			<button onclick="onGenerateClick()" type="button" name="submit"> Create new Matrix </button>
 
 			<br>
 			<br>
 
 			<table class="table table-bordered table-condensed">
-      	<tbody>
-        <tr>
+      	<tbody id="tableBody">
+        <!-- <tr>
           <td><input type="text" class="form-control" /></td>
-          <td><input type="text" class="form-control" /></td>
-          <td><input type="text" class="form-control" /></td>
-          <td><input type="text" class="form-control" /></td>
-          <td><input type="text" class="form-control" /></td>
-          <td><input type="text" class="form-control" /></td>
-        </tr>
-				<tr>
-          <td><input type="text" class="form-control" /></td>
-          <td><input type="text" class="form-control" /></td>
-          <td><input type="text" class="form-control" /></td>
-          <td><input type="text" class="form-control" /></td>
-          <td><input type="text" class="form-control" /></td>
-          <td><input type="text" class="form-control" /></td>
-        </tr>
+        </tr> -->
       	</tbody>
     	</table>
 
