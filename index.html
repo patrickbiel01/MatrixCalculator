@@ -18,25 +18,27 @@
 		<!-- Scripts -->
 		<script type="text/javascript" src="basicMatrixOperations.js"> </script>
 		<script type="text/javascript" src="createMatrixInput.js" > </script>
+		<script type="text/javascript" src="calculateDriver.js"> </script>
 	</head>
 
 	<body>
-		<!--
-			Navigation
-			- use JS to change calculation
-			-->
+		<!-- Navigation -->
 		<div class="sidenav">
-  		<a href="#">Determinant</a>
-  		<a href="#">Inverse</a>
-			<a href="#">Gaussian Elimantion</a>
-			<a href="#">Matrix Powers</a>
-			<a href="#">Multiplication</a>
-  		<a href="#">Cofactor</a>
-		  <a href="#">Adjugate</a>
-			<a href="#">Rank</a>
-			<a href="#">Add</a>
-			<a href="#">Subtract</a>
-			<a href="#">Transpose</a>
+			<ul id="navLinkList">
+				<button class="selected"> Determinant </button>
+	  		<button> Inverse </button>
+				<button> Gaussian Elimantion </button>
+				<button> Matrix Powers </button>
+				<button> Multiplication </button>
+	  		<button> Cofactor </button>
+			  <button> Adjugate </button>
+				<button> Rank </button>
+				<button> Add </button>
+				<button> Subtract </button>
+				<button> Transpose </button>
+			</ul>
+			<script type="text/javascript" src="navigation.js" > </script>
+
 		</div>
 
 	<div class="pageContent">
@@ -46,6 +48,7 @@
 			<input class="sizeInput" placeholder="# of rows" id="rowDim" type="text">
 			x
 			<input class="sizeInput" placeholder="# of columns" id="columnsDim" type="text">
+			<div class="error" id="sizeError"></div>
 			<br>
 			<button onclick="onGenerateClick()" type="button" name="submit"> Create new Matrix </button>
 
@@ -56,7 +59,14 @@
       	<tbody id="tableBody"> </tbody>
     	</table>
 
-			<button type="button" name="submit"> Calculate </button>
+			<button onclick="onCalculateClick()" type="button" name="submit"> Calculate </button>
+
+			<br>
+
+			<div class="outputContainer">
+				<em style="font-size: 0.65em;">Output</em>
+				<div id="output"> </div>
+			</div>
 
 			</main>
 

@@ -13,16 +13,28 @@ body {
   padding: 8px 0;
 }
 
-.sidenav a {
-  padding: 6px 8px 6px 16px;
+.sidenav ul {
+  margin: 0;
+  padding: 0;
+}
+
+.sidenav button {
+  padding: 7px 3px 7px 10px;
   text-decoration: none;
   font-size: 25px;
   color: #2196F3;
   display: block;
+  text-align: left;
+  border-width: 0px;
+  background-color: #eee
 }
 
-.sidenav a:hover {
+.sidenav button:hover {
   color: #064579;
+}
+
+#selected {
+  color: darkblue;
 }
 
 .pageContent {
@@ -51,6 +63,27 @@ body {
   max-width: 75px;
   padding: 0 5px;
   line-height: 2 !important;
+}
+
+#output {
+  display: block;
+  background-color: lightgrey;
+  border-radius: 15px;
+  height: 200px;
+  width: 100%;
+  overflow: scroll;
+}
+
+.outputContainer {
+  margin-top: 25px;
+}
+
+.error {
+  background-color: rgba(201, 0, 7, 0.85);
+  color: white;
+  text-align: center;
+  border-radius: 10px;
+  font-size: 0.85em;
 }
 
 @media screen and (max-height: 450px) {
