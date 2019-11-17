@@ -1,7 +1,7 @@
 function onCalculateClick() {
   let matrix = getInputMatrix();
   let output = document.getElementById("output");
-  console.log(CALC_STATE);
+
   let outputText = ""
   switch (CALC_STATE.trim()) {
     case "Determinant":
@@ -10,7 +10,7 @@ function onCalculateClick() {
     case "Inverse":
       outputText = stringFormat(inverse(matrix));
       break;
-    case "GaussianElimantion":
+    case "Gaussian Elimination":
       outputText = stringFormat(rref(matrix));
       break;
     case "Cofactor":
@@ -20,7 +20,8 @@ function onCalculateClick() {
       outputText = stringFormat(adjugate(matrix));
       break;
     case "Rank":
-      outputText = "\t" + rank(matrix);
+      let rowEchelon = rref(matrix);
+      outputText = "\t" + rank(rowEchelon);
       break;
     case "Transpose":
       outputText = stringFormat(transpose(matrix));
@@ -55,17 +56,22 @@ function getInputMatrix() {
 }
 
 function stringFormat(matrix) {
-  let string = "";
+  let string = '<table class="outputMatrix"><tbody>';
 
   for (let row = 0; row < matrix.length; row++) {
-    string = string.concat("|");
+    let rowE = "<tr>"
     for (let column = 0; column < matrix[row].length; column++) {
-      let entry = "\t" + matrix[row][column].toString() + ",";
+      let columnE = '<td>';
+      let entry = "\t" + matrix[row][column].toString();
       if (column == matrix[row].length-1) { entry += "\t"; }
-      string = string.concat(entry);
+      columnE = columnE.concat(entry, "</td>");
+      rowE = rowE.concat(columnE);
     }
-    string = string.concat("| \n");
+    rowE = rowE.concat("</tr>");
+    string = string.concat(rowE);
   }
+
+  string = string.concat("</table></tbody>");
 
   return string;
 }

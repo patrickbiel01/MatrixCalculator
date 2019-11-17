@@ -11,7 +11,7 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Matrix Calculator</title>
-		<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
+		<link rel="shortcut icon" type="image/x-icon" href="favicon.png">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 		<!-- Styles	-->
 		<link rel="stylesheet" href="styles.css">
@@ -27,7 +27,7 @@
 			<ul id="navLinkList">
 				<button class="selected"> Determinant </button>
 	  		<button> Inverse </button>
-				<button> Gaussian Elimantion </button>
+				<button> Gaussian Elimination </button>
 				<button> Matrix Powers </button>
 				<button> Multiplication </button>
 	  		<button> Cofactor </button>
@@ -53,11 +53,23 @@
 			<button onclick="onGenerateClick()" type="button" name="submit"> Create new Matrix </button>
 
 			<br>
+
+			<div hidden><input class="sizeInput" placeholder="Exponent" id="powerField" type="text"></div>
+
 			<br>
 
 			<table class="table table-bordered table-condensed">
       	<tbody id="tableBody"> </tbody>
     	</table>
+
+			<div hidden id="conditionalTable">
+				<input class="sizeInput" placeholder="# of rows" id="rowDim2" type="text">
+				x
+				<input class="sizeInput" placeholder="# of columns" id="columnsDim2" type="text">
+				<div class="error" id="sizeError"></div>
+				<br>
+				<button onclick="onGenerateClick()" type="button" name="submit"> Create new Matrix </button>
+			</div>
 
 			<button onclick="onCalculateClick()" type="button" name="submit"> Calculate </button>
 
@@ -73,8 +85,9 @@
 			<!-- Footer & contact info -->
 			<footer role="contentinfo">
 				<div class="content-wrap">
-					<p>Copyright 2018 by Patrick Biel</p>
+					<p>Copyright 2019 by Patrick Biel</p>
 				</div>
+				<div>Icons made by <a href="https://www.flaticon.com/authors/vitaly-gorbachev" title="Vitaly Gorbachev">Vitaly Gorbachev</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
 			</footer>
 
 	</div>

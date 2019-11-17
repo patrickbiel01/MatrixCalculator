@@ -56,8 +56,8 @@ body {
 
  td {
   max-width: 100px;
-  margin: 0 5px 0 5px !important;
-  padding: 0 !important;
+  margin: 0 5px 0 5px;
+  padding: 0;
 }
 .formControl {
   max-width: 75px;
@@ -76,6 +76,26 @@ body {
 
 .outputContainer {
   margin-top: 25px;
+}
+
+.outputMatrix {
+  border-width: 0 medium 0 medium;
+  border-style: solid;
+  margin-left: 15px;
+  margin-top: 15px;
+}
+.outputMatrix tr {
+  margin: 15px;
+  margin-right: 4px;
+}
+.outputMatrix tr:nth-child(even) {
+  background-color: rgb(199, 199, 199);
+}
+.outputMatrix td {
+  display: inline-block;
+  overflow: scroll;
+  width: 80px;
+  margin: 2px 7px 2px 20px;
 }
 
 .error {
