@@ -1,30 +1,51 @@
 function onCalculateClick() {
-  let matrix = getInputMatrix();
+  let A = getInputMatrix(1);
+  let B = getInputMatrix(2);
+
   let output = document.getElementById("output");
+  let errorContainer = document.getElementById('expError');
+  errorContainer.innerHTML = '';
 
   let outputText = ""
   switch (CALC_STATE.trim()) {
     case "Determinant":
-      outputText = "\t" + det(matrix);
+      outputText = "\t" + det(A);
       break;
     case "Inverse":
-      outputText = stringFormat(inverse(matrix));
+      outputText = stringFormat(inverse(A));
       break;
     case "Gaussian Elimination":
-      outputText = stringFormat(rref(matrix));
+      outputText = stringFormat(rref(A));
       break;
     case "Cofactor":
-      outputText = stringFormat(cofactorMatrix(matrix));
+      outputText = stringFormat(cofactorMatrix(A));
       break;
     case "Adjugate":
-      outputText = stringFormat(adjugate(matrix));
+      outputText = stringFormat(adjugate(A));
       break;
     case "Rank":
-      let rowEchelon = rref(matrix);
+      let rowEchelon = rref(A);
       outputText = "\t" + rank(rowEchelon);
       break;
     case "Transpose":
-      outputText = stringFormat(transpose(matrix));
+      outputText = stringFormat(transpose(A));
+      break;
+    case "Matrix Powers":
+      let exponent = getExponentInput();
+      let powered = matrixPow(A, exponent);
+      outputText = stringFormat(powered);
+      break;
+    case "Multiplication":
+      let product = multiply(A, B);
+      outputText = stringFormat(product);
+      break;
+    case "Add":
+      let sum = add(A, B);
+      outputText = stringFormat(sum);
+      break;
+    case "Subtract":
+      let diff = subtract(A, B);
+      outputText = stringFormat(diff);
       break;
     default:
       outputText = "Haven't implemented yet :(";
@@ -35,10 +56,10 @@ function onCalculateClick() {
 
 
 
-function getInputMatrix() {
+function getInputMatrix(tableNum) {
   let matrix = [];
 
-  let tb = document.getElementById("tableBody");
+  let tb = document.getElementById("tableBody" + tableNum);
   let children = tb.childNodes;
   for (let i = 0; i < children.length; i++) {
     matrix.push([]);

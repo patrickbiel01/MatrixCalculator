@@ -370,7 +370,7 @@ function matrixPow(matrixO, k) {
   }else if (k == 0) {
     return Identity(matrixO.size);
   }else if (k > 0) {
-    for (let i = 0; i < k; i++) {
+    for (let i = 1; i < k; i++) {
       transformed = multiply(transformed, matrixO);
     }
   }

@@ -65,6 +65,14 @@ body {
   line-height: 2 !important;
 }
 
+#conditionalTable {
+  margin-top: 25px;
+}
+
+#calcButton {
+  margin-top: 40px;
+}
+
 #output {
   display: block;
   background-color: lightgrey;
@@ -75,7 +83,7 @@ body {
 }
 
 .outputContainer {
-  margin-top: 25px;
+  margin-top: 60px;
 }
 
 .outputMatrix {

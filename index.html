@@ -45,35 +45,33 @@
 			<main role="main">
 			<h1> Matrix Calculator </h1>
 
-			<input class="sizeInput" placeholder="# of rows" id="rowDim" type="text">
+			<input class="sizeInput" placeholder="# of rows" id="rowDim1" type="text">
 			x
-			<input class="sizeInput" placeholder="# of columns" id="columnsDim" type="text">
+			<input class="sizeInput" placeholder="# of columns" id="columnsDim1" type="text">
 			<div class="error" id="sizeError"></div>
-			<br>
-			<button onclick="onGenerateClick()" type="button" name="submit"> Create new Matrix </button>
-
-			<br>
-
-			<div hidden><input class="sizeInput" placeholder="Exponent" id="powerField" type="text"></div>
-
-			<br>
-
+			<button onclick="onGenerateClick(1)" type="button" name="submit"> Create new Matrix </button>
 			<table class="table table-bordered table-condensed">
-      	<tbody id="tableBody"> </tbody>
+      	<tbody id="tableBody1"> </tbody>
     	</table>
 
-			<div hidden id="conditionalTable">
+			<div style="display: none" id="conditionalTable">
 				<input class="sizeInput" placeholder="# of rows" id="rowDim2" type="text">
 				x
 				<input class="sizeInput" placeholder="# of columns" id="columnsDim2" type="text">
 				<div class="error" id="sizeError"></div>
-				<br>
-				<button onclick="onGenerateClick()" type="button" name="submit"> Create new Matrix </button>
+				<button onclick="onGenerateClick(2)" type="button" name="submit"> Create new Matrix </button>
+
+				<table class="table table-bordered table-condensed">
+	      	<tbody id="tableBody2"> </tbody>
+	    	</table>
 			</div>
 
-			<button onclick="onCalculateClick()" type="button" name="submit"> Calculate </button>
+			<div id="powerField" style="display: none" >
+				<input id="expInput" class="sizeInput" placeholder="Exponent" type="text">
+				<div class="error" id="expError"></div>
+			</div>
 
-			<br>
+			<button id="calcButton" onclick="onCalculateClick()" type="button" name="submit"> Calculate </button>
 
 			<div class="outputContainer">
 				<em style="font-size: 0.65em;">Output</em>

@@ -1,8 +1,8 @@
-function onGenerateClick() {
+function onGenerateClick(tableNum) {
 
   /* Get Size Inputs from Users */
 
-  let input1 = document.getElementById("rowDim");
+  let input1 = document.getElementById("rowDim" + tableNum);
   let row = parseInt(input1.value);
 
   let errorContainer = document.getElementById('sizeError');
@@ -14,7 +14,7 @@ function onGenerateClick() {
     return;
   }
 
-  let input2 = document.getElementById("columnsDim");
+  let input2 = document.getElementById("columnsDim" + tableNum);
   let column = parseInt(input2.value);
   if (Number.isNaN(column)) {
     // Throw error to user
@@ -26,7 +26,7 @@ function onGenerateClick() {
   /* Create Table for Matrix Input */
 
   // Get table container
-  let tb = document.getElementById("tableBody");
+  let tb = document.getElementById("tableBody" + tableNum);
   // Remove previous matrix
   while (tb.firstChild) {
     tb.removeChild(tb.firstChild);
@@ -42,5 +42,22 @@ function onGenerateClick() {
     }
     tb.appendChild(tRow);
   }
+
+}
+
+function getExponentInput() {
+  let powerField = document.getElementById("expInput");
+  let exponent = parseInt(powerField.value);
+
+  let errorContainer = document.getElementById('expError');
+  errorContainer.innerHTML = '';
+
+  if (Number.isNaN(exponent)) {
+    // Throw error to user
+    errorContainer.innerHTML = 'Enter valid exponent number';
+    return NaN;
+  }
+
+  return exponent;
 
 }
