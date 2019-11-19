@@ -1,6 +1,7 @@
 # Matrix Calculator
 
 A Java-script based web application that calculates various fundamental matrix operations.
+Click to use [here](http://www.patrickbiel.com/Matrix-Calculator/)
 
 ![Screenshot](https://github.com/patrickbiel01/MatrixCalculator/blob/master/matrix-calculator-screenshot.png)
 
