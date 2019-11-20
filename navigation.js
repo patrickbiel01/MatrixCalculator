@@ -12,7 +12,6 @@ function initNavList() {
       item.addEventListener('click', function(){
         itemOnClick(i);
       });
-      item.onclick = "itemOnClick(" + "i)";
     }
   }
 

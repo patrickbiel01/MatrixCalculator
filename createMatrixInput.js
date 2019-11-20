@@ -5,7 +5,7 @@ function onGenerateClick(tableNum) {
   let input1 = document.getElementById("rowDim" + tableNum);
   let row = parseInt(input1.value);
 
-  let errorContainer = document.getElementById('sizeError');
+  let errorContainer = document.getElementById('sizeError' + tableNum);
   errorContainer.innerHTML = '';
 
   if (Number.isNaN(row)) {

@@ -253,19 +253,26 @@ function orthogonal(matrixO) {
   let transposeProduct = multiply(transpose(matrixO), matrixO);
   return isEqual(transposeProduct, Identity(matrixO.length));
 }
-
 function skewSymmteric(matrixO) {
   if (matrixO.length != matrixO[0].length) {
     return false
   }
   return isEqual(matrixO, multiplyByConstant(-1, transpose(matrixO)));
 }
-
 function symmteric(matrixO) {
   if (matrixO.length != matrixO[0].length) {
     return false
   }
   return isEqual(matrixO, transpose(matrixO));
+}
+function isSquare(matrix) {
+  return (matrix.length == matrix[0].length);
+}
+function canMultiply(matrix1, matrix2) {
+  return (matrix1[0].length == matrix2.length);
+}
+function sameSize(matrix1, matrix2) {
+  return (matrix1.length == matrix2.length) && (matrix1[0].length == matrix2[0].length);
 }
 
 

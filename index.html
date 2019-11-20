@@ -19,6 +19,7 @@
 		<script type="text/javascript" src="basicMatrixOperations.js"> </script>
 		<script type="text/javascript" src="createMatrixInput.js" > </script>
 		<script type="text/javascript" src="calculateDriver.js"> </script>
+		<script type="text/javascript" src="navigation.js" defer > </script>
 	</head>
 
 	<body>
@@ -37,7 +38,6 @@
 				<button> Subtract </button>
 				<button> Transpose </button>
 			</ul>
-			<script type="text/javascript" src="navigation.js" > </script>
 
 		</div>
 
@@ -48,22 +48,24 @@
 			<input class="sizeInput" placeholder="# of rows" id="rowDim1" type="text">
 			x
 			<input class="sizeInput" placeholder="# of columns" id="columnsDim1" type="text">
-			<div class="error" id="sizeError"></div>
+			<div class="error" id="sizeError1"></div>
 			<button onclick="onGenerateClick(1)" type="button" name="submit"> Create new Matrix </button>
 			<table class="table table-bordered table-condensed">
       	<tbody id="tableBody1"> </tbody>
     	</table>
+			<div class="error" id="inputError1"></div>
 
 			<div style="display: none" id="conditionalTable">
 				<input class="sizeInput" placeholder="# of rows" id="rowDim2" type="text">
 				x
 				<input class="sizeInput" placeholder="# of columns" id="columnsDim2" type="text">
-				<div class="error" id="sizeError"></div>
+				<div class="error" id="sizeError2"></div>
 				<button onclick="onGenerateClick(2)" type="button" name="submit"> Create new Matrix </button>
 
 				<table class="table table-bordered table-condensed">
 	      	<tbody id="tableBody2"> </tbody>
 	    	</table>
+				<div class="error" id="inputError2"></div>
 			</div>
 
 			<div id="powerField" style="display: none" >
