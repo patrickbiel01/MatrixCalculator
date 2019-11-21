@@ -313,7 +313,7 @@ function rref(matrixO) {
       //If column is all zeros
       if (lastLeadingOne == -1) { continue; }
       //Otherwise, swap current row with last leading non-zero
-      matrix = swapRows(i, lastleadingOne, matrix);
+      matrix = swapRows(i,lastLeadingOne,matrix);
       columnV = getColumnVectorFrom(matrix, i);
     }
 
@@ -416,32 +416,39 @@ function diagonize(matrixO) {
     -----   TESTING   -----
 */
 
-let A = [
-  [1, -1, 2],
-  [0, -3, 1],
-  [0, -3, 1]
-];
-let B = Identity(3);
-
-let C = multiply(A,B);
-console.log(C);
-
-let D = [
-  [2, -1, 3, 0],
-  [-3, 1, 0, 4],
-  [-2, 1, 4, 1],
-  [-1, 3, 0, -2]
-];
-console.log("\n");
-console.log(det(D));
-console.log(rref(D));
-
-let E = [
-  [1, 1, -1, 9],
-  [0, 1, 3, 3],
-  [-1, 0, -2, 2]
-];
-console.log(rref(E));
+// let A = [
+//   [1, -1, 2],
+//   [0, -3, 1],
+//   [0, -3, 1]
+// ];
+// let B = Identity(3);
+//
+// let C = multiply(A,B);
+// console.log(C);
+//
+// let D = [
+//   [2, -1, 3, 0],
+//   [-3, 1, 0, 4],
+//   [-2, 1, 4, 1],
+//   [-1, 3, 0, -2]
+// ];
+// console.log("\n");
+// console.log(det(D));
+// console.log(rref(D));
+//
+// let E = [
+//   [1, 1, -1, 9],
+//   [0, 1, 3, 3],
+//   [-1, 0, -2, 2]
+// ];
+// console.log(rref(E));
+//
+// let BREAK = [
+//   [0, 1, 6],
+//   [1, 2, 3]
+// ];
+// console.log(BREAK);
+// console.log(rref(BREAK));
 
 
 //Utility
