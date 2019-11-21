@@ -216,11 +216,10 @@ function adjugate(matrixO) {
   return transpose(cofactors);
 }
 
-
-
+const ERROR_DET_0 = 'Cannot invert matrix';
 function inverse(matrixO) {
   let determinant = det(matrixO);
-  if (determinant == 0) { throw "Matrix is not invertable"; }
+  if (determinant == 0) { return ERROR_DET_0; }
   let inverse = multiplyByConstant(
     1/determinant, adjugate(matrixO)
   );

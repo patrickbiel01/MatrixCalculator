@@ -1,6 +1,7 @@
 const ERROR_1 = "Incomplete Input Entry";
 const ERROR_2 = 'Invalid Matrix Size';
 
+
 function onCalculateClick() {
   let A = getInputMatrix(1);
   let B = getInputMatrix(2);
@@ -23,7 +24,9 @@ function onCalculateClick() {
       break;
     case "Inverse":
       if (!isSquare(A)) { inputError1.innerHTML = ERROR_2; return; }
-      outputText = stringFormat(inverse(A));
+      let invMat = inverse(A);
+      if (invMat == ERROR_DET_0) { outputText = ERROR_DET_0; break; }
+      outputText = stringFormat(invMat);
       break;
     case "Gaussian Elimination":
       outputText = stringFormat(rref(A));
