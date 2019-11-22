@@ -292,7 +292,7 @@ function rank(matrix) {
 
 //Gaussian Elimantion:
 // Look at nth column (except last column)
-  // if A[n][n] == 0: swap with last row with non-zero entry
+  // if A[n][n] == 0: swap with last row (below current row) with non-zero entry
     // if no non-zero entries move to (n+1)th column
   // reduce A[n][n] to 1 (and all entries for corresponding row)
   // Make all other column entries 0 through elementary operations
@@ -304,7 +304,7 @@ function rref(matrixO) {
     if (matrix[i][i] == 0) {
       //Find row with last leading one
       let lastLeadingOne = -1;
-      for (let j = columnV.length-1; j >= 0; j--) {
+      for (let j = columnV.length-1; j >= i; j--) {
         if (columnV[j] != 0) {
           lastLeadingOne = j;
           break;
@@ -320,6 +320,7 @@ function rref(matrixO) {
     //Reduce leading non-zero's row to 1
     let a = matrix[i][i];
     matrix = multiplyRowByConstant(i, 1/a, matrix);
+    matrix[i][i] = 1
     columnV[i] = 1;
 
     //Reduce all other rows to zero
@@ -416,40 +417,46 @@ function diagonize(matrixO) {
     -----   TESTING   -----
 */
 
-// let A = [
-//   [1, -1, 2],
-//   [0, -3, 1],
-//   [0, -3, 1]
-// ];
-// let B = Identity(3);
-//
-// let C = multiply(A,B);
-// console.log(C);
-//
-// let D = [
-//   [2, -1, 3, 0],
-//   [-3, 1, 0, 4],
-//   [-2, 1, 4, 1],
-//   [-1, 3, 0, -2]
-// ];
-// console.log("\n");
-// console.log(det(D));
-// console.log(rref(D));
-//
-// let E = [
-//   [1, 1, -1, 9],
-//   [0, 1, 3, 3],
-//   [-1, 0, -2, 2]
-// ];
-// console.log(rref(E));
-//
-// let BREAK = [
-//   [0, 1, 6],
-//   [1, 2, 3]
-// ];
-// console.log(BREAK);
-// console.log(rref(BREAK));
+let A = [
+  [1, -1, 2],
+  [0, -3, 1],
+  [0, -3, 1]
+];
+let B = Identity(3);
 
+let C = multiply(A,B);
+
+console.log(rref(A));
+console.log(rref(B));
+console.log(rref(C));
+
+let D = [
+  [2, -1, 3, 0],
+  [-3, 1, 0, 4],
+  [-2, 1, 4, 1],
+  [-1, 3, 0, -2]
+];
+console.log(rref(D));
+
+let E = [
+  [1, 1, -1, 9],
+  [0, 1, 3, 3],
+  [-1, 0, -2, 2]
+];
+console.log(rref(E));
+
+let F = [
+  [0, 1, 6],
+  [1, 2, 3]
+];
+console.log(rref(F));
+
+let G = [
+  [111,11,1, 0],
+  [222, 22, 2, 0],
+  [4,4,4, 0]
+];
+console.log(rref(G));
 
 //Utility
 
