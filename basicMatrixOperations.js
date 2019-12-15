@@ -367,6 +367,21 @@ function addRows(r1, k1, r2, k2, matrixO) {
 }
 /* ---- End of Elementary Operations ----- */
 
+function rowspaceBasis(matrixO) {
+  let matrix = copy(matrixO);
+  let idpRows = []
+  for (let i = 0; i < matrixO.length; i++) {
+    matrix[i].push(0);
+  }
+  let rrefMat = rref(matrix);
+  for (let i = 0; i < matrixO.length; i++) {
+    matrix[i].pop();
+  }
+  //Check linear independance for each row
+  if (idpRows.length == 0) { idpRows = [zero]; }
+  return idpRows;
+}
+
 
 //Power to N
 function matrixPow(matrixO, k) {
@@ -385,6 +400,13 @@ function matrixPow(matrixO, k) {
   return transformed;
 }
 
+function trace(matrix) {
+  let trace = 0
+  for (let i = 0; i < matrix.length; i++) {
+    trace *= matrix[i][i];
+  }
+  return trace;
+}
 
 //Eigenvalue and Eigen Vector
 class DiagonalizeSet {
@@ -394,11 +416,12 @@ class DiagonalizeSet {
 
   }
 }
-function diagonize(matrixO) {
+function diagonize(matrix) {
+
   //Find det(λI - A); A- nxn matrix
   let characteristic = subtract(
     Identity(matrixO.length),
-    matrixO
+    matrix
   );
 
   //Modify determinants to return 2 arrays:
