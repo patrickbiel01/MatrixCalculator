@@ -298,8 +298,8 @@ function rank(matrix) {
   // Make all other column entries 0 through elementary operations
 function rref(matrixO) {
   let matrix = copy(matrixO);
-
-  for (let i = 0; i < matrix[0].length-1; i++) {
+  let length = matrix[0].length-1 < matrix.length ? matrix[0].length-1 : matrix.length ;
+  for (let i = 0; i < length; i++) {
     let columnV = getColumnVectorFrom(matrix, i);
     if (matrix[i][i] == 0) {
       //Find row with last leading one
@@ -480,6 +480,19 @@ let G = [
   [4,4,4, 0]
 ];
 console.log(rref(G));
+
+let H = [
+  [3,1,9,4,1],
+  [4,2,0,5,2]
+];
+console.log(rref(H));
+
+let I = [
+  [0,0,0, 0],
+  [0,4,3, 0],
+  [0,-4,-3, 0]
+];
+console.log(rref(I));
 
 //Utility
 

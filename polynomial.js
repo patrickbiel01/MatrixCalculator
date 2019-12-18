@@ -3,46 +3,73 @@
     Key   : exponent
     Value : coefficent
 */
-
-function lambdaDet(matrix) {
-  let lambdaMat = Identity(matrixO.length);
-  for (let i = 0; i < matrix.length; i++) {
-     lambdaMat[i][i] = matrix[i][i];
+function copy(aObject) {
+  if (!aObject) {
+    return aObject;
   }
-
-  let cMat = copy(matrix);
-  for (let i = 0; i < matrix.length; i++) {
-    matrix[i][i] = 0;
+  let v;
+  let bObject = Array.isArray(aObject) ? [] : {};
+  for (const k in aObject) {
+    v = aObject[k];
+    bObject[k] = (typeof v === "object") ? copy(v) : v;
   }
+  return bObject;
+}
+
+function characteristicPolynomial(matrixO) {
+  //Convet numeric matric to polynomial matrix: (xI - A)
+  var polymat = copy(matrixO);
+  for (let i = 0; i < polymat.length; i++) {
+    for (let j = 0; j < polymat[i].length; j++) {
+      let polyData = { 0:-1*polymat[i][j] };
+      if (i == j) { polyData = { 1:1, 0:-1*polymat[i][j] };  }
+      polymat[i][j] = polyData;
+    }
+  }
+  //Calculate det for polynomials
+  let det = charDet(polymat);
+
+  return det;
+}
+function charDet(mat) {
+  const row = 0;
+  let totalDet = {};
 
   //Matrix is 2x2, Calculate determinant
-  if (matrix.length == 2) {
-    let a = matrix[0][0];
-    let b = matrix[0][1];
-    let c = matrix[1][0];
-    let d = matrix[1][1];
-    let p1 = multiplyPolynomial([[1,0],[1,a]], [[1,0],[1,d]]);
-    let polyData = subtractPolynomial(p1, [[0],[c*b]]);
-    return polyData;
+  if (mat.length == 2) {
+    let a = mat[0][0];
+    let b = mat[0][1];
+    let c = mat[1][0];
+    let d = mat[1][1];
+    let p1 = multiplyPolynomials([a, d]);
+    let p2 = multiplyPolynomials([c, b]);
+    let det = subtractPolynomials(p1, p2);
+    return det;
   }
-
-  const row = 0;
 
   //Matrix is 3x3 or greater; recursively reduce to 2x2
-  let totalDet = 0;
-  for (let column = 0; column < matrix.length; column += 1) {
+  for (let column = 0; column < mat.length; column += 1) {
     //Generate cofactor
-    let cofactor = getCofactorFrom(matrix, row, column);
+    let cofactor = polycofactorOf(mat, row, column);
     //Calculate determinant for that cofactor
-    let subDet = det(cofactor);
-    let sum = matrix[row][column] * subDet;
+    let subDet = charDet(cofactor);
+    let sum = multiplyPolynomials([mat[row][column], subDet]);
     //Alternating, add and subtract the sum
     let negative = (column+1) % 2 == 0;
-    if (negative) { sum *= -1; }
-    totalDet += sum;
+    if (negative) { sum = multiplyPolynomials([sum, { 0:-1 }]); }
+    totalDet = addPolynomials(totalDet, sum);
   }
 
-  return [coeffs, exps];
+  return totalDet;
+}
+function polycofactorOf(matrixO, row, column) {
+  let matrix = copy(matrixO);
+  for(let i = 0; i < matrix.length; i++) {
+    matrix[i].splice(column, 1);
+  }
+  matrix.splice(row, 1);
+
+  return matrix;
 }
 
 
@@ -51,23 +78,23 @@ function lambdaDet(matrix) {
 */
 
 //Function that distributes any number of polynomials
-function distributePolynomials(polynomials) {
+function multiplyPolynomials(polynomials) {
   var prevProduct = null;
   for (let i = 0; i < polynomials.length; i++) {
     let poly = polynomials[i];
     if (i == 0) { continue; }
     if (prevProduct === null) {
-      prevProduct = multiplyTwoPolynomials(poly, polynomials[i-1]);
+      prevProduct = distributeTwoPolynomials(poly, polynomials[i-1]);
       continue;
     }
-    prevProduct = multiplyTwoPolynomials(prevProduct, poly);
+    prevProduct = distributeTwoPolynomials(prevProduct, poly);
   }
 
   let fProduct = prevProduct;
   return fProduct;
 }
 //Sub routine that distributes only 2 polynomials
-function multiplyTwoPolynomials(p1, p2) {
+function distributeTwoPolynomials(p1, p2) {
   let productP = {};
 
   for (let key1S in p1) {
@@ -121,7 +148,7 @@ function addTwoPolynomials(p1,p2) {
   return sum;
 }
 
-function multiplyPolynomialBy(k, polynomials) {
+function multiplyPolynomialBy(k, p) {
   let sum = {};
   for (let key in p) {
     let val = parseInt(p[key]);
@@ -129,6 +156,11 @@ function multiplyPolynomialBy(k, polynomials) {
     sum[key] = newVal;
   }
   return sum;
+}
+
+function subtractPolynomials(p1, p2) {
+  let nveP2 = multiplyPolynomialBy(-1, p2);
+  return addPolynomials([p1, nveP2])
 }
 
 /*  END OF: Polynomial Operation Functions  */
@@ -145,8 +177,15 @@ let p2 = {
   0: 10,
   2: 1
 };
-let product = distributePolynomials([p1, p2]);
+let product = multiplyPolynomials([p1, p2]);
 let sum = addPolynomials([p1, p2]);
 
 console.log(product);
 console.log(sum);
+console.log("\n");
+
+let A = [
+  [1, 1],
+  [0, 1]
+];
+console.log(characteristicPolynomial(A));
