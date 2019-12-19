@@ -26,6 +26,7 @@ function characteristicPolynomial(matrixO) {
       polymat[i][j] = polyData;
     }
   }
+
   //Calculate det for polynomials
   let det = charDet(polymat);
 
@@ -57,7 +58,7 @@ function charDet(mat) {
     //Alternating, add and subtract the sum
     let negative = (column+1) % 2 == 0;
     if (negative) { sum = multiplyPolynomials([sum, { 0:-1 }]); }
-    totalDet = addPolynomials(totalDet, sum);
+    totalDet = addPolynomials([totalDet, sum]);
   }
 
   return totalDet;
@@ -168,7 +169,6 @@ function subtractPolynomials(p1, p2) {
 
 
 /*  Testing   */
-
 let p1 = {
   0: 10,
   2: 1
@@ -179,7 +179,6 @@ let p2 = {
 };
 let product = multiplyPolynomials([p1, p2]);
 let sum = addPolynomials([p1, p2]);
-
 console.log(product);
 console.log(sum);
 console.log("\n");
@@ -189,3 +188,11 @@ let A = [
   [0, 1]
 ];
 console.log(characteristicPolynomial(A));
+console.log("\n");
+
+let B = [
+  [0, 0, 0],
+  [0, 0, 0],
+  [0, 0, 0]
+];
+console.log(characteristicPolynomial(B));
