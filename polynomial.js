@@ -16,16 +16,20 @@ function copy(aObject) {
   return bObject;
 }
 
+function eigenVectorsVals(matrix) {
+  let charPoly = characteristicPolynomial(matrix);
+  let eigenVals = solveRootsof(charPoly);
+
+  let space = generateEigenSpace(matrix);
+  let eigenVect = [];
+  for (eigenVal in eigenVals) {
+    eigenVect.push(evalEigenSpace(space, eigenVal));
+  }
+}
+
 function characteristicPolynomial(matrixO) {
   //Convet numeric matric to polynomial matrix: (xI - A)
-  var polymat = copy(matrixO);
-  for (let i = 0; i < polymat.length; i++) {
-    for (let j = 0; j < polymat[i].length; j++) {
-      let polyData = { 0:-1*polymat[i][j] };
-      if (i == j) { polyData = { 1:1, 0:-1*polymat[i][j] };  }
-      polymat[i][j] = polyData;
-    }
-  }
+  var polymat = generateEigenSpace(matrixO)
 
   //Calculate det for polynomials
   let det = charDet(polymat);
@@ -71,6 +75,19 @@ function polycofactorOf(matrixO, row, column) {
   matrix.splice(row, 1);
 
   return matrix;
+}
+function generateEigenSpace(matrixO) {
+  var eigenSpace = copy(matrixO);
+  for (let i = 0; i < polymat.length; i++) {
+    for (let j = 0; j < polymat[i].length; j++) {
+      let polyData = { 0:-1*polymat[i][j] };
+      if (i == j) { polyData = { 1:1, 0:-1*polymat[i][j] };  }
+      polymat[i][j] = polyData;
+    }
+  }
+}
+function evalEigenSpace(space, eigenVal) {
+
 }
 
 

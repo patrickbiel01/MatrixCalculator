@@ -299,6 +299,7 @@ function rank(matrix) {
 function rref(matrixO) {
   let matrix = copy(matrixO);
   let length = matrix[0].length-1 < matrix.length ? matrix[0].length-1 : matrix.length ;
+  console.log(length);
   for (let i = 0; i < length; i++) {
     let columnV = getColumnVectorFrom(matrix, i);
     if (matrix[i][i] == 0) {
@@ -440,59 +441,69 @@ function diagonize(matrix) {
     -----   TESTING   -----
 */
 
-let A = [
-  [1, -1, 2],
-  [0, -3, 1],
-  [0, -3, 1]
+// let A = [
+//   [1, -1, 2],
+//   [0, -3, 1],
+//   [0, -3, 1]
+// ];
+// let B = Identity(3);
+//
+// let C = multiply(A,B);
+//
+// console.log(rref(A));
+// console.log(rref(B));
+// console.log(rref(C));
+//
+// let D = [
+//   [2, -1, 3, 0],
+//   [-3, 1, 0, 4],
+//   [-2, 1, 4, 1],
+//   [-1, 3, 0, -2]
+// ];
+// console.log(rref(D));
+//
+// let E = [
+//   [1, 1, -1, 9],
+//   [0, 1, 3, 3],
+//   [-1, 0, -2, 2]
+// ];
+// console.log(rref(E));
+//
+// let F = [
+//   [0, 1, 6],
+//   [1, 2, 3]
+// ];
+// console.log(rref(F));
+//
+// let G = [
+//   [111,11,1, 0],
+//   [222, 22, 2, 0],
+//   [4,4,4, 0]
+// ];
+// console.log(rref(G));
+//
+// let H = [
+//   [1,2,3,4],
+//   [2,3,4,5]
+// ];
+// console.log(rref(H));
+//
+// let I = [
+//   [0,0,0, 0],
+//   [0,4,3, 0],
+//   [0,-4,-3, 0]
+// ];
+// console.log(rref(I));
+
+console.log("\n");
+console.log("\n");
+let J = [
+  [1,3,-3, -3, 0],
+  [0,0,-2, 2, 0]
 ];
-let B = Identity(3);
-
-let C = multiply(A,B);
-
-console.log(rref(A));
-console.log(rref(B));
-console.log(rref(C));
-
-let D = [
-  [2, -1, 3, 0],
-  [-3, 1, 0, 4],
-  [-2, 1, 4, 1],
-  [-1, 3, 0, -2]
-];
-console.log(rref(D));
-
-let E = [
-  [1, 1, -1, 9],
-  [0, 1, 3, 3],
-  [-1, 0, -2, 2]
-];
-console.log(rref(E));
-
-let F = [
-  [0, 1, 6],
-  [1, 2, 3]
-];
-console.log(rref(F));
-
-let G = [
-  [111,11,1, 0],
-  [222, 22, 2, 0],
-  [4,4,4, 0]
-];
-console.log(rref(G));
-
-let H = [
-  [3,1,9,4,1],
-  [4,2,0,5,2]
-];
-console.log(rref(H));
-
-let I = [
-  [0,0,0, 0],
-  [0,4,3, 0],
-  [0,-4,-3, 0]
-];
-console.log(rref(I));
+console.log(J);
+console.log("\n");
+console.log(rref(J));
 
 //Utility
 
